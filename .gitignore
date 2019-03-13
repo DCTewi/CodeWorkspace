@@ -11,7 +11,12 @@ nogit-*
 *.4
 
 lg*
-!lg*.*
+!lg*.cpp
+!lg*.CPP
+!lg*.cc
+!lg*.CC
+!lg*.py
+!lg*.c
 
 # Special judge
 1
@@ -36,7 +41,7 @@ j
 test
 untitled
 kmp*
-!kmp*.*
+!kmp*.cpp
 fft
 hpre
 enkoi-1
