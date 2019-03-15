@@ -1,5 +1,5 @@
 # Code-pool
-Where i save my code
+Where I save my code
 
-Ops, you shouldn't be here.
+Oops, you shouldn't be here.  
 Codes here may hurt your eyes.
