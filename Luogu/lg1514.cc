@@ -20,34 +20,40 @@ struct Node
     }
 };
 
-map<Node, bool> picked;
-
 bool getPath(int p)
 {
     memset(vis, 0, sizeof(vis));
 
     queue<Node> q;
-    q.push(Node(p, m));
-    vis[p][m] = 1;
+    q.push(Node(p, n));
+    vis[p][n] = 1;
 
     while (q.size())
     {
         Node u = q.front();
+        cout<<"now is "<<u.x<<" "<<u.y<<endl;
         bool flag = false;
         for (int i = 0; i < 4; i++)
         {
             int nx = u.x + dx[i], ny = u.y + dy[i];
-            if ((!vis[nx][ny]) && tile[nx][ny] > tile[u.x][u,y])
+            if (nx > 0 && nx <= m && ny > 0 && ny <= n)
+            if ((!vis[nx][ny]) && tile[nx][ny] > tile[u.x][u.y])
             {
                 flag = true;
                 q.push(Node(nx, ny));
+                cout<<u.x<<" "<<u.y<<"("<<tile[u.x][u.y]<<") -> "<<nx<<" "<<ny<<"("<<tile[nx][ny]<<")"<<endl;
             }
         }
         if (!flag && u.y == 1)
         {
-
+            leave--;
+            ans++;
+            return true;
         }
+        q.pop();
     }
+
+    return false;
 }
 
 int main()
@@ -57,8 +63,10 @@ int main()
     leave = m;
     for (int i = 1; i <= n; i++)
     {
+        //cout<<i<<":"<<endl;
         for (int j = 1; j <= m; j++)
         {
+            //cout<<j<<": ";
             cin>>tile[i][j];
         }
     }
@@ -68,11 +76,11 @@ int main()
         if (!getPath(i))
         {
             puts("0");
-            cout<<left<<endl;
+            cout<<leave<<endl;
         }
     }
 
-    if (left == 0)
+    if (leave == 0)
     {
         puts("1");
         cout<<ans<<endl;
