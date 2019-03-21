@@ -20,36 +20,48 @@ struct Node
     }
 };
 
+map<int, bool> picked;
+
 bool getPath(int p)
 {
     memset(vis, 0, sizeof(vis));
 
     queue<Node> q;
-    q.push(Node(p, n));
+    q.push(Node(n, p));
     vis[p][n] = 1;
 
     while (q.size())
     {
         Node u = q.front();
-        cout<<"now is "<<u.x<<" "<<u.y<<endl;
+        //cout<<"now is "<<u.x<<" "<<u.y<<endl;
         bool flag = false;
         for (int i = 0; i < 4; i++)
         {
             int nx = u.x + dx[i], ny = u.y + dy[i];
-            if (nx > 0 && nx <= m && ny > 0 && ny <= n)
+            if (nx > 0 && nx <= n && ny > 0 && ny <= m)
+            {
+            	//cout<<"\ttry going to "<<nx<<","<<ny<<endl;
             if ((!vis[nx][ny]) && tile[nx][ny] > tile[u.x][u.y])
             {
+            	//cout<<"\t\twent to"<<nx<<","<<ny<<endl;
                 flag = true;
                 q.push(Node(nx, ny));
-                cout<<u.x<<" "<<u.y<<"("<<tile[u.x][u.y]<<") -> "<<nx<<" "<<ny<<"("<<tile[nx][ny]<<")"<<endl;
+                //cout<<u.x<<" "<<u.y<<"("<<tile[u.x][u.y]<<") -> "<<nx<<" "<<ny<<"("<<tile[nx][ny]<<")"<<endl;
             }
+        	}
         }
-        if (!flag && u.y == 1)
+        if (!flag && u.x == 1)
         {
             leave--;
-            ans++;
+            if (picked.count(u.y) == 0)
+            {
+            	picked[u.y] = true;
+            	ans++;
+            }
+            //cout<<"=====\t\t\t\tpicked "<<u.x<<endl;
             return true;
         }
+        //cout<<"back"<<endl;
         q.pop();
     }
 
@@ -70,13 +82,23 @@ int main()
             cin>>tile[i][j];
         }
     }
-
+/*
+    for (int i = 1; i <= n; i++)
+    {
+    	for (int j = 1; j <= m; j++)
+    	{
+    		cout<<i<<","<<j<<":"<<tile[i][j]<<" , ";
+    	}
+    	cout<<endl;
+    }
+*/
     for (int i = 1; i <= m; i++)
     {
         if (!getPath(i))
         {
-            puts("0");
-            cout<<leave<<endl;
+        	puts("0");
+        	cout<<leave<<endl;
+        	return 0;
         }
     }
 
@@ -90,7 +112,6 @@ int main()
         puts("0");
         cout<<leave<<endl;
     }
-
 
     return 0;
 }
