@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1529327710 source:f:\matchs\ckoj round10\main.cpp
+	<iostream>
+	<cstdio>
+	<cmath>
+
