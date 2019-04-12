@@ -31,8 +31,7 @@ int main(void){
 					d[j][i] = 0;
 				if(x <= y)
 					d[i][j] = 0;
-				
-		} 
+		}
 	}
 //	for(int i = 1;i <= m; ++i,cout<<endl)
 //		for(int j = 1;j <= m; ++j)
@@ -61,8 +60,6 @@ int main(void){
 	}
 	for(int i = 0;i < ans.size(); ++i)
 	 	printf("%d%c",ans[i]," \n"[i==ans.size()-1]);
-	
-	
-	
+
 	return 0;
-} 
+}
