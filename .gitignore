@@ -1,5 +1,5 @@
 # vscode ipch
-**/ipch/
+**/.vscode/
 
 # No git files
 nogit-*
