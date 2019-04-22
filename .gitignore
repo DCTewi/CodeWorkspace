@@ -12,6 +12,7 @@ nogit-*
 *.2
 *.3
 *.4
+*.class
 
 lg*
 !lg*.cpp
@@ -20,6 +21,7 @@ lg*
 !lg*.CC
 !lg*.py
 !lg*.c
+!lg*.java
 
 # Special judge
 1
