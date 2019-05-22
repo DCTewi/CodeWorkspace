@@ -11,7 +11,7 @@ int getfa(int p)
 {
     return fa[p] == p? p: fa[p] = getfa(fa[p]);
 }
-d
+
 void unite(int u, int v)
 {
     fa[getfa(u)] = getfa(v);
