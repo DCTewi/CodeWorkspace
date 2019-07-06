@@ -6,6 +6,7 @@ nogit-*
 
 # exe files
 *.exe
+*.exc
 *.o
 *.out
 *.NEW
