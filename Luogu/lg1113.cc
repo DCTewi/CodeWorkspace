@@ -15,7 +15,7 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin >> n;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         int id = 0;
         cin >> id >> node[i].len;
@@ -39,7 +39,7 @@ int main()
         int now = q.front(), nowdep = node[now].depth + node[now].len;
         for (auto it : node[now].next)
         {
-            if (node[it].depth == -1 || node[it].depth > nowdep)
+            if (node[it].depth == -1 || node[it].depth < nowdep)
             {
                 node[it].depth = nowdep;
                 q.emplace(it);
@@ -48,8 +48,9 @@ int main()
         q.pop();
     }
 
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
+        // cout << i << " - " << node[i].depth << " " << node[i].len << endl;
         if (ans < node[i].depth + node[i].len)
         {
             ans = node[i].depth + node[i].len;
