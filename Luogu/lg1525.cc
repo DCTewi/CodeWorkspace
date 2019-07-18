@@ -2,67 +2,67 @@
 using namespace std;
 
 const int MAXN = 2e4 + 5;
-const int lMAXM = 1e6 + 5;
+const int MAXM = 1e5 + 5;
 int n, m;
+
+int father[MAXN], enemy[MAXN];
+int getf(int p)
+{
+    return father[p] == p? p: father[p] = getf(father[p]);
+}
+void unit(int u, int v)
+{
+    father[getf(u)] = getf(v);
+}
 
 struct Edge
 {
-    int to, cost;
-    Edge(int t = 0, int c = 0)
-    {
-        to = t; cost = c;
-    }
-};
-vector<Edge> g[MAXN];
-struct Edge_d
-{
     int u, v, cost;
-    Edge_d(int i = 0, int j = 0, int c = 0)
+    Edge(int p = 0, int q = 0, int w = 0)
     {
-        u = i; v = j; cost = c;
+        u = p, v = q, cost = w;
     }
 };
-vector<Edge_d> edge;
-
-int vis[MAXN];
+vector<Edge> edges;
 
 int main()
 {
     ios::sync_with_stdio(0);
-
     cin >> n >> m;
     for (int i = 0; i < m; i++)
     {
         int u, v, cost;
         cin >> u >> v >> cost;
-        edge.emplace_back(Edge_d(u, v, cost));
-        g[u].emplace_back(Edge(v, cost));
-        g[v].emplace_back(Edge(u, cost));
+        edges.emplace_back(Edge(u, v, cost));
     }
-    sort(edge.begin(), edge.end(), [](Edge_d a, Edge_d b)->bool
+    for (int i = 0; i <= n; i++)
+    {
+        father[i] = i;
+    }
+
+    sort(edges.begin(), edges.end(), [](Edge a, Edge b)->bool
     {
         return a.cost > b.cost;
     });
 
-    for (auto &i : edge)
+    for (auto &e : edges)
     {
-        int minres = 1 << 30, u = i.u, v = i.v;
-        bool a = true, b = true;
-        for (auto &it : g[u])
+        int &u = e.u, &v = e.v;
+        if (getf(u) == getf(v))
         {
-            if (vis[it.to]) minres = min(minres, it.cost);
-            if (vis[it.to] == 1)
-            {
-                a = false;
-            }
-            else if (vis[it.to] == 2)
-            {
-                b = false;
-            }
+            cout << e.cost << "\n";
+            return 0;
         }
-        if (a) vis[u] = 1;
-        else if (b) vis[u] = 1;
+        else
+        {
+            if (!enemy[v]) enemy[v] = u;
+            else unit(enemy[v], u);
+
+            if (!enemy[u]) enemy[u] = v;
+            else unit(enemy[u], v);
+        }
     }
+    cout << "0\n";
 
     return 0;
 }
