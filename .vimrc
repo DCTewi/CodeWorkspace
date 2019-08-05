@@ -4,9 +4,11 @@
 "
 " Properties
 set nocompatible
+set showcmd
 set mouse=a
 set encoding=utf-8
 set t_Co=256
+set clipboard=unnamedplus
 filetype indent on
 
 " Util
@@ -32,15 +34,20 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=blue
 set hlsearch
 set incsearch
 set ignorecase
+set smartcase
 
-" Map
-imap <F8> <ESC>:w<CR>i
+" Compile
 map <F5> :w <CR> :!g++ % -o %<.exe -std=c++14 -O2 -Wall -DDEBUG && ./%<.exe <CR>
 map <C-F5> :w <CR> :!python3 % <CR>
+
+" Auto complete
 inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
-inoremap { {}<ESC>i
-inoremap {<CR> {<CR>}<ESC>O
 inoremap ' ''<ESC>i
 inoremap " ""<ESC>i
+inoremap { {}<ESC>i
+inoremap {<CR> {<CR>}<ESC>O
+
+" Header
+inoremap <F8> #include<bits/stdc++.h><CR>using namespace std;<CR>typedef long long ll;<CR>
 
