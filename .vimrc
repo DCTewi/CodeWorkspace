@@ -44,7 +44,6 @@ syntax on
 set number
 set cursorline
 set showmatch
-set lines=35 columns=120
 hi MatchParen cterm=bold ctermbg=none ctermfg=blue
 
 " Search
@@ -75,6 +74,7 @@ if has("gui_running")
   set guioptions-=m
   set guioptions-=T
   set guioptions-=r
+  set lines=35 columns=120
   colorscheme torte
   if g:os == "win"
     set guifont=Microsoft_Yahei_Mono:h11
