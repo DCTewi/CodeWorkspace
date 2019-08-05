@@ -37,7 +37,7 @@ set ignorecase
 set smartcase
 
 " Compile
-map <F5> :w <CR> :!g++ % -o %<.exe -std=c++14 -O2 -Wall -DDEBUG && ./%<.exe <CR>
+map <F5> :w <CR> :!g++ "%" -o "%<.exe" -std=c++14 -O2 -Wall -DDEBUG && "./%<.exe" <CR>
 map <C-F5> :w <CR> :!python3 % <CR>
 
 " Auto complete
