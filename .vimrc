@@ -53,7 +53,11 @@ set ignorecase
 set smartcase
 
 " Compile
-map <F5> :w <CR> :!g++ "%" -o "%<.exe" -std=c++14 -O2 -Wall -DDEBUG && "./%<.exe" <CR>
+if g:os == "win"
+    map <F5> :w <CR> :!g++ "%" -o "%<.exe" -std=c++14 -O2 -Wall -DDEBUG ; "./%<.exe" <CR>
+else
+    map <F5> :w <CR> :!g++ "%" -o "%<.exe" -std=c++14 -O2 -Wall -DDEBUG && "./%<.exe" <CR>
+endif
 map <C-F5> :w <CR> :!python3 % <CR>
 
 " Auto complete
@@ -69,17 +73,17 @@ inoremap <F8> #include<bits/stdc++.h><CR>using namespace std;<CR>typedef long lo
 
 " GVim
 if has("gui_running")
-  set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-  set fileencoding=utf-8
-  set guioptions-=m
-  set guioptions-=T
-  set guioptions-=r
-  set lines=35 columns=120
-  colorscheme torte
-  if g:os == "win"
-    set guifont=Microsoft_Yahei_Mono:h11
-  else
-    set guifont=Fira\ Mono\ 12
-  endif
+    set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+    set fileencoding=utf-8
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set lines=35 columns=120
+    colorscheme torte
+    if g:os == "win"
+        set guifont=Microsoft_Yahei_Mono:h11
+    else
+        set guifont=Fira\ Mono\ 12
+    endif
 endif
 
