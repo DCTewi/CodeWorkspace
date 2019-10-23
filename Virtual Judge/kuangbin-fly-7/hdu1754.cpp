@@ -1,5 +1,3 @@
-// WA ing
-
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -98,32 +96,36 @@ struct SegTree
 
 int main()
 {
-    int n = read<int>(), m = read<int>();
-    vector<int> raw(n);
-    for (int i = 0; i < n; i++)
+    int n, m;
+    while (~scanf("%d%d", &n, &m))
     {
-        raw[i] = read<int>();
-    }
-    SegTree st(n, raw);
-
-    for (int i = 0; i < m; i++)
-    {
-        char opt; cin >> opt;
-        int x = read<int>(), y = read<int>();
-        switch (opt)
+        vector<int> raw(n);
+        for (int i = 0; i < n; i++)
         {
-            case 'Q':
+            raw[i] = read<int>();
+        }
+        SegTree st(n, raw);
+
+        for (int i = 0; i < m; i++)
+        {
+            char opt; cin >> opt;
+            int x = read<int>(), y = read<int>();
+            switch (opt)
             {
-                printf("%lld\n", st.query(x, y));
-                break;
-            }
-            case 'U':
-            {
-                st.add(x, x, -st.query(x, x));
-                st.add(x, x, y);
-                break;
+                case 'Q':
+                {
+                    printf("%lld\n", st.query(x, y));
+                    break;
+                }
+                case 'U':
+                {
+                    st.add(x, x, -st.query(x, x));
+                    st.add(x, x, y);
+                    break;
+                }
             }
         }
+
     }
 
     return 0;
