@@ -1,5 +1,7 @@
 # vscode ipch
 **/.vscode/
+**/.idea/
+CMakeLists.txt
 
 # No git files
 nogit-*
