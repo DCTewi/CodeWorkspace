@@ -1,22 +1,38 @@
-#include <bits/stdc++.h>
+#include <queue>
+#include <cstdio>
+#include <vector>
+#include <cctype>
+#include <iostream>
+#include <memory.h>
 using namespace std;
 typedef long long ll;
 
-template <class T> T read()
-{
-    T x = 0; int w = 0, ch = getchar();
-    while (!isdigit(ch)) w |= ch == '-', ch = getchar();
-    while (isdigit(ch)) x = (x << 3) + (x << 1) + (ch ^ 48), ch = getchar();
-    return w? -x: x;
-}
+const int MAXN = 1e5 + 5;
+
+int ans[MAXN];
 
 int main()
 {
-    int n = read<int>(), k = read<int>();
+    int n, k; cin >> n >> k;
+    queue<int> q;
+    q.push(n);
+    while (q.size())
+    {
+        int u = q.front(); q.pop();
+        if (u == k)
+        {
+            cout << ans[k] << "\n"; return 0;
+        }
 
-    if (n == k) return 0 * puts("0");
-
-    
+        vector<int> x({u * 2, u + 1, u - 1});
+        for (int i : x)
+        {
+            if (i < MAXN && i >= 0 && !ans[i])
+            {
+                q.push(i); ans[i] = ans[u] + 1;
+            }
+        }
+    }
 
     return 0;
 }
