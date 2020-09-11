@@ -86,7 +86,6 @@ int main(int argc, char const* argv[]) {
         for (int i = 1, l; i <= k; i += 1)
             if (h[i] != 1) {
                 l = lca(sta[top], h[i]);
-                printf("")
                 if (l != sta[top]) {
                     while (id[l] < id[sta[top - 1]]) {
                         lca(sta[top - 1], sta[top]);
@@ -104,7 +103,6 @@ int main(int argc, char const* argv[]) {
         for (int i = 1; i < top; i += 1)
             lca(sta[i], sta[i + 1]), g.push(sta[i], sta[i + 1], MX);
         Dp(1), printf("%lld\n", f[1]);
-        for (int i = 1; i <= n; i++) printf("f[%d] = %lld\n", i, f[i]);
         for (int i = 1; i <= k; i += 1) book[h[i]] = 0;
     }
     return 0;
