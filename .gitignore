@@ -1,6 +1,9 @@
 # vscode ipch
-**/.vscode/
-**/.idea/
+.vscode
+.idea
+# ionide
+.fake
+.ionide
 CMakeLists.txt
 
 # No git files
@@ -16,7 +19,6 @@ nogit-*
 *.3
 *.4
 *.class
-
 lg*
 !lg*.cpp
 !lg*.CPP
@@ -54,4 +56,3 @@ fft
 hpre
 enkoi-1
 helloubuntu
-
