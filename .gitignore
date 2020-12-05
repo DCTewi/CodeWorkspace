@@ -1,6 +1,7 @@
 # vscode ipch
 .vscode
 .idea
+.vs
 # ionide
 .fake
 .ionide
