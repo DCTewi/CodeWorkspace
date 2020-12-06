@@ -22,3 +22,4 @@ Empty
     |> insert 5
     |> insert 3
     |> exists 5
+    |> printfn "%A"
