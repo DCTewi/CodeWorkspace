@@ -1,26 +1,20 @@
 from selenium import webdriver
 
 customToSay = "还不错！"
-
-driverPath = r"C:\\Users\\dctew\\Documents\\msedgedriver.exe"
-
-def wait(browser):
-    browser.implicitly_wait(10)
+driverPath = R"C:\Users\dctew\Documents\msedgedriver.exe"
 
 # get page
-
 browser = webdriver.Edge(executable_path=driverPath)
 browser.get("https://jw.v.zzu.edu.cn/eams/login.action")
-wait(browser)
+browser.implicitly_wait(10)
 
 import os
 os.system("cls")
 ignore = input("Please loggin and enter sth")
 
 # get links
-
 browser.get("https://jw.v.zzu.edu.cn/eams/quality/stdEvaluate.action")
-wait(browser)
+browser.implicitly_wait(10)
 
 buttons = browser.find_elements_by_xpath('//span[@class="eval"]/..')
 links = []
@@ -31,7 +25,6 @@ for button in buttons:
 
 # do!
 import time
-
 for link in links:
     print("Now " + link)
     browser.get(link)
@@ -45,6 +38,6 @@ for link in links:
     
     alert = browser.switch_to_alert()
     alert.accept()
-    wait(browser)
+    browser.implicitly_wait(10)
 
     time.sleep(0.5)
