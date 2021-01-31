@@ -1,3 +1,8 @@
+# cookie
+cookie.txt
+*.json
+*.log
+
 # vscode ipch
 .vscode
 .idea
