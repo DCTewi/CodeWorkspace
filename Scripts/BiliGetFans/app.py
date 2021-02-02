@@ -8,6 +8,7 @@ import json
 from requests.api import options
 
 upUid = "1427846"
+pageCount = 50
 
 class Fan:
     def __init__(self, uid, nick, face) -> None:
@@ -49,13 +50,13 @@ def getCurrentFanList(uid : str, cookie : dict) -> list:
     fanCount = requests.get(getUserStatsUrl(uid), cookies=cookie).json()['data']['follower']
     print("Now Fans Count: {}".format(fanCount))
 
-    totalPage = fanCount // 20 + (1 if fanCount % 20 != 0 else 0)
+    totalPage = fanCount // pageCount + (1 if fanCount % pageCount != 0 else 0)
     print("Total Pages: {}".format(totalPage))
 
     fanNameList = []
     for i in range(1, totalPage + 1):
         print("GETing page: {}/{}".format(i, totalPage))
-        pageList = requests.get(getFanListApiUrl(uid, i), cookies=cookie).json()['data']['list']
+        pageList = requests.get(getFanListApiUrl(uid, i, pageCount), cookies=cookie).json()['data']['list']
         for fan in pageList:
             mid = fan['mid']
             nick = fan['uname']
