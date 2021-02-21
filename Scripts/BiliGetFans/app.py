@@ -4,6 +4,7 @@ import requests
 import shutil
 import time
 import json
+import os
 
 from requests.api import options
 
@@ -71,7 +72,7 @@ def getLocalFans() -> list:
         return json.loads(f.read(), object_hook=fromJsonToFan)
 
 def saveLocalFans(fansList : list):
-    shutil.copy("fans.json", "fans-{}.json".format(time.strftime("%Y-%m-%d %H-%M-%S", time.localtime())))
+    shutil.copy("fans.json", "history/fans-{}.json".format(time.strftime("%Y-%m-%d %H-%M-%S", time.localtime())))
     jsonstr = json.dumps(fansList, default=fromFanToJson, sort_keys=True, indent=4)
     with open("fans.json", encoding="utf-8", mode="w") as f:
         f.write(jsonstr.encode('latin-1').decode('unicode_escape'))
@@ -101,12 +102,19 @@ def getChangeLog(uid: str):
     if not fanInfoChanged:
         print("No new fans or unfollow")
 
-    with open("changelog-{}.log".format(dateString), encoding="utf-8", mode="w") as f:
+    with open("changelog/changelog-{}.log".format(dateString), encoding="utf-8", mode="w") as f:
         f.write(changeLog)
 
     saveLocalFans(nowFans)
 
 def main():
+    if not os.path.exists('changelog'):
+        os.mkdir('changelog')
+    if not os.path.exists('history'):
+        os.mkdir('history')
+    if not os.path.exists('fans.json'):
+        with open('fans.json', mode="w+", encoding="utf-8") as f:
+            f.write("[]")
     getChangeLog(upUid)
 
 main()
