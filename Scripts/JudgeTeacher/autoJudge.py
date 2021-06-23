@@ -1,7 +1,7 @@
 from selenium import webdriver
 
 customToSay = "还不错！"
-driverPath = R"C:\Users\dctew\Documents\msedgedriver.exe"
+driverPath = R"D:\Tools\msedgedriver.exe"
 
 # get page
 browser = webdriver.Edge(executable_path=driverPath)
